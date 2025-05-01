@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Me Baby</title>
+  <style>
+    body {
+      background-color: lavenderblush;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h2 {
+      z-index: 2;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: palevioletred;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2;
+      position: relative;
+    }
+
+    button:hover {
+      background-color: hotpink;
+    }
+
+    #message {
+      display: none;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    #message p {
+      font-size: 18px;
+      color: deeppink;
+    }
+
+    #media {
+      display: none;
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      z-index: 2;
+      position: relative;
+    }
+
+    #images img {
+      width: 200px;
+      border-radius: 15px;
+      margin: 10px 0;
+      border: 2px solid pink;
+    }
+
+    #video video {
+      width: 300px;
+      max-width: 100%;
+      border: 3px solid palevioletred;
+      border-radius: 20px;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      position: absolute;
+      top: 100%;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.6;
+      transform: rotate(45deg);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        top: 100%;
+        opacity: 0.6;
+      }
+      100% {
+        top: -10%;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Hi baby, tap this when you're ready for a surprise</h2>
+
+  <button onclick="startSurprise()">Click me</button>
+
+  <!-- Hidden Audio -->
+  <audio id="love-audio" loop>
+    <source src="paper.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <!-- Hidden Message -->
+  <div id="message">
+    <p>
+      Hey love, I just want you to know how much you mean to me. <br>
+      Every moment with you feels magical, and I'm beyond grateful to have you in my life.<br>
+      You’re the reason I smile, and I’ll keep loving you more each day.
+    </p>
+  </div>
+
+  <!-- Images + Video Hidden Initially -->
+  <div id="media" style="display: none;">
+    <div id="images">
+      <img src="ring.jpg" alt="Image 1">
+      <img src="letter.jpg" alt="Image 2">
+      <img src="us.jpg" alt="Image 3">
+    </div>
+    <div id="video">
+      <video controls>
+        <source src="vid.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function startSurprise() {
+      document.getElementById('love-audio').play();
+      document.getElementById('message').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('media').style.display = 'flex';
+      }, 1000);
+    }
+
+    // Floating hearts animation
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  </script>
+
+</body>
+</html>
